@@ -1,3 +1,10 @@
+const brandIntro = `<div class="brand-intro" aria-label="BLOW 시작 애니메이션">
+  <div class="intro-signature"><div class="intro-logo" aria-hidden="true"><span>b</span><span>l</span><span>o</span><span>w</span><i></i></div><div class="intro-loading" aria-hidden="true"><span></span></div><p>브랜드의 이야기를, 더 간편하게.</p></div>
+  <button class="intro-skip" type="button">건너뛰기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></button>
+</div>`;
+// Only the first home visit in this tab gets an intro; the timeout also works if the module fails.
+const introBootstrap = `<script>(()=>{try{if(location.hash||matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('blow-intro-seen'))return;sessionStorage.setItem('blow-intro-seen','1');document.documentElement.dataset.intro='pending';document.documentElement.dataset.introStarted=performance.now();setTimeout(()=>{delete document.documentElement.dataset.intro;delete document.documentElement.dataset.introStarted;window.dispatchEvent(new Event('blow:intro-timeout'));},2200);}catch{}})();</script>`;
+
 const contactWidget = `<details class="floating-contact">
   <summary id="contact" class="contact-launcher" aria-controls="contact-picker">
     <svg class="launcher-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z"/><path d="M7 11h10M7 15h6"/></svg>
@@ -26,10 +33,10 @@ export function layout({ title, description, content, route = '/', policy = fals
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f9fcf9">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=surround">
 <link rel="preload" href="/assets/fonts/Cafe24Ssurround-v2.0.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/hero-preview.css"><link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/hero-preview.css"><link rel="stylesheet" href="/assets/site.css">${hasHero ? '\n<link rel="stylesheet" href="/assets/hero-motion.css">' + introBootstrap : ''}
 <script src="/assets/site.js" type="module"></script>${hasHero ? '<script src="/assets/hero-preview.js" type="module"></script>' : ''}
 </head>
-<body class="${policy ? 'policy-page' : hasHero ? 'home-page' : 'inner-page'}">
+<body class="${policy ? 'policy-page' : hasHero ? 'home-page' : 'inner-page'}">${hasHero ? '\n' + brandIntro : ''}
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-header"><div class="nav-shell">
 <a class="wordmark" href="/" aria-label="BLOW 홈">blow<span>.</span></a>

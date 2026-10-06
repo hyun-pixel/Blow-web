@@ -44,7 +44,6 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 const entranceAnimations = new Set();
 const entranceTargets = [...document.querySelectorAll([
-  '.hero-eyebrow', '.hero h1>span', '.hero-description', '.hero-actions',
   '.section-heading', '.feature', '.flow-list>li', '.flow-bottom',
   '.pricing-intro', '.price-plan',
   '.page-heading', '.guide-section-heading', '.guide-steps>li', '.account-help>article',
