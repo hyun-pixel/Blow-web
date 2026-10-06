@@ -48,8 +48,8 @@ assert(pricing.includes('href="#contact" data-contact-open'), 'pricing: opens sh
 for (const [route, html] of pages) assert(html.includes('href="/pricing/"'), route + ': dedicated pricing navigation');
 assert(!/<h[1-6][^>]*>[^<]*(FAQ|경쟁사)/i.test(home));
 const download = pages.get('/download/');
-const installerUrl = 'https://github.com/hyun-pixel/Blow/releases/download/desktop-v0.1.11-test.1/BLOW-Setup-0.1.11-x64.exe';
-for (const text of ['설치파일 다운로드','BLOW-Setup-0.1.11-x64.exe','117.3MB','게시자 전자 서명 없음']) assert(download.includes(text),'download: missing '+text);
+const installerUrl = 'https://github.com/hyun-pixel/Blow-web/releases/download/desktop-v0.1.16/BLOW-Setup-0.1.16-x64.exe';
+for (const text of ['설치파일 다운로드','BLOW-Setup-0.1.16-x64.exe','117.2MB','게시자 전자 서명 없음']) assert(download.includes(text),'download: missing '+text);
 assert(download.includes('href="' + installerUrl + '" aria-describedby="download-notice"'),'download: approved public installer with signing notice');
 assert(!download.includes('공개 다운로드 준비 중'),'download: no stale availability notice');
 for (const [route, html] of pages) {
